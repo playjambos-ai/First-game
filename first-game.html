@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Game Pertama</title>
+  <style type="text/css" media="all">
+    body, * {
+  margin: 0;
+  padding: 0;
+  background: black;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+div {
+  color: black;
+}
+
+button {
+  color: black;
+  background: blue;
+  font-weight: bold;
+  font-size: 2rem;
+  width: 4rem;
+  border-style: solid;
+  border-color: white;
+  border-width: 1px;
+  padding: 3px;
+  text-align: center;
+  transition: 0.3s;
+  border-radius: 20px;
+}
+
+button:active {
+  background: red;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.background { 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+  width: 70vw;
+  height: 50vh;
+  background: white;
+  border-radius: 10px;
+}
+
+.button-container, label, h2, h1, h3 {
+  background: none;
+}
+
+.game-container {
+  display: flex;
+  background: none;
+  margin: 0px 0px;
+}
+
+#player, #computer {
+  font-size: 2.5rem;
+  position: relative;
+  top: 10px;
+  margin: 0px 30px;
+  text-align: center;
+}
+
+#result {
+  position: relative;
+  top: 5px;
+}
+
+.player-computer {
+  background: none;
+  display: flex;
+}
+
+.player {
+  position: relative;
+  left: -18px;
+}
+
+.computer {
+  position: relative;
+  left: 26px;
+}
+  </style>
+</head>
+<body>
+  
+  <div class="container">
+    <div class="background">
+      <label for="game">gunting kertas batu</label>
+      
+      <h1 id="score"></h1>
+    
+      <h2>pilih salah satu</h2>
+      <div class="button-container">
+        <button id="gunting" type="submit">✌️</button>
+        <button id="kertas" type="submit">✋</button>
+        <button id="batu" type="submit">✊</button>
+      </div>
+      <div class="game-container">
+        <h2 id="player">✊</h2>
+        <h2 id="computer">✊</h2>
+      </div>
+      <div class="player-computer">
+        <h3 class="player">Player</h3>
+        <h3 class="computer">Computer</h3>
+      </div>
+      <h2 id="result"></h2>
+    </div>
+  </div>
+
+
+<script>
+  const gunting = document.getElementById('gunting')
+const kertas = document.getElementById('kertas')
+const batu = document.getElementById('batu')
+const result = document.getElementById('result')
+const score = document.getElementById('score')
+const player = document.getElementById('player')
+const computer = document.getElementById('computer')
+let skor = 0
+
+gunting.onclick = function() {
+  player.innerHTML = '✌️'
+  let game = Math.floor(Math.random() * 3)
+  if (game === 1) {
+    skor++
+    computer.innerHTML = '✋'
+    result.innerHTML = 'anda menang'
+    score.innerHTML = 'score: ' + skor
+    
+  } else if (game === 0) {
+    computer.innerHTML = '✌️'
+    result.innerHTML = 'imbang'
+  } else {
+    computer.innerHTML = '✊'
+    result.innerHTML = 'coba lagi'
+  }
+}
+
+kertas.onclick = function() {
+  
+  player.innerHTML = '✋'
+  let game = Math.floor(Math.random() * 3)
+  if (game === 1) {
+    computer.innerHTML = '✋'
+    result.innerHTML = 'imbang'
+  } else if (game === 0) {
+    skor++ 
+    score.innerHTML = 'score: ' + skor
+    result.innerHTML = 'anda menang'
+    computer.innerHTML = '✊'
+  } else {
+    result.innerHTML = 'coba lagi'
+    computer.innerHTML = '✌️'
+  }
+}
+
+batu.onclick = function() {
+  player.innerHTML = '✊'
+  let game = Math.floor(Math.random() * 3)
+  if (game === 0) {
+    skor++ 
+    computer.innerHTML = '✌️'
+    score.innerHTML = 'score: ' + skor
+    result.innerHTML = 'anda menang'
+  } else if (game === 2) {
+    computer.innerHTML = '✊'
+    result.innerHTML = 'imbang'
+  } else {
+    computer.innerHTML = ''
+    result.innerHTML = 'coba lagi'
+  }
+}
+</script>
+</body>
+</html>
